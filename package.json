@@ -1,10 +1,20 @@
 {
   "name": "angular-electron-template",
   "version": "0.0.0",
+  "type": "commonjs",
   "scripts": {
     "ng": "ng",
+
+
+
     "start": "ng serve",
-    "build": "ng build",
+    "electron:build:watch": "tsup electron/main.ts electron/preload.ts --format cjs --out-dir dist-electron --watch",
+    "electron:start:watch": "nodemon",
+    "electron:dev": "wait-on http://localhost:4200 && concurrently \"npm:electron:build:watch\" \"npm:electron:start:watch\"",
+    "dev": "concurrently \"npm:start\" \"npm:electron:dev\"",
+
+
+    "build": "ng build && npm run build:electron",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -17,8 +27,16 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@types/node": "^24.10.1",
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.6",
+    "nodemon": "^3.1.11",
     "rxjs": "~7.8.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "tslib": "^2.3.0",
+    "tsup": "^8.5.1",
+    "wait-on": "^9.0.3",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

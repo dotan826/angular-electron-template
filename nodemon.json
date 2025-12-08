@@ -1,0 +1,5 @@
+{
+  "watch": ["dist-electron"],
+  "exec": "electron dist-electron/main.js",
+  "ext": "js"
+}
