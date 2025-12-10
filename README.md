@@ -1,8 +1,8 @@
-# AngularElectronTemplate
+# Angular-Electron Template
 
 ## What is it ?
 
-I created a base template for an Electron Desktop App that include Angular as UI.
+I created a base template for an Electron + Angular.
 
 ## Notes
 
@@ -15,10 +15,20 @@ I created a base template for an Electron Desktop App that include Angular as UI
 * Electron -> 39.2.6
 * Angular -> 19.2.6
 
-## Instructions
-1. Clone the project.
-2. Go to "package.json" and change the "name" of the project.
-3. Run "npm run dev".
+# Instructions
+* Clone the project.
+* Go to "package.json" and change:
+  * "name" = Name of the project.
+  * "appId" = The Product/Company ID.
+  * "productName" = The Product Name.
+  * "description" = Application Description.
+  * "author" = Author Name.
+
+### Development
+* Run `npm run dev`.
+
+### Build
+* Run `npm run dist`
+* This will built and generate installers inside `release/` folder.
 
 
-Enjoy ! :)

@@ -3,6 +3,8 @@
 # Compiled output
 /dist
 /dist-electron
+/dist-angular
+/release
 /tmp
 /out-tsc
 /bazel-out

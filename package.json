@@ -1,20 +1,41 @@
 {
   "name": "angular-electron-template",
   "version": "0.0.0",
+  "description": "Your app description",
+  "author": "Your Name",
   "type": "commonjs",
+  "main": "dist-electron/main.js",
+  "build": {
+    "appId": "com.yourcompany.yourapp",
+    "productName": "YourAppName",
+    "files": [
+      "dist-angular/**/*",
+      "dist-electron/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    }
+  },
   "scripts": {
     "ng": "ng",
-
-
-
     "start": "ng serve",
-    "electron:build:watch": "tsup electron/main.ts electron/preload.ts --format cjs --out-dir dist-electron --watch",
+
+    "electron:build:watch": "tsup --config tsup.config.ts electron/main.ts electron/preload.ts --format cjs --out-dir dist-electron --watch",
+
+
     "electron:start:watch": "nodemon",
     "electron:dev": "wait-on http://localhost:4200 && concurrently \"npm:electron:build:watch\" \"npm:electron:start:watch\"",
     "dev": "concurrently \"npm:start\" \"npm:electron:dev\"",
-
-
     "build": "ng build && npm run build:electron",
+    "build:angular": "ng build --configuration production",
+
+
+
+    "build:electron": "tsup --config tsup.config.ts electron/main.ts electron/preload.ts --format cjs --out-dir dist-electron",
+
+
+
+    "dist": "npm run build:angular && npm run build:electron && electron-builder",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -27,16 +48,8 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
-    "@types/node": "^24.10.1",
-    "concurrently": "^9.2.1",
-    "electron": "^39.2.6",
-    "nodemon": "^3.1.11",
     "rxjs": "~7.8.0",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
     "tslib": "^2.3.0",
-    "tsup": "^8.5.1",
-    "wait-on": "^9.0.3",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -50,6 +63,15 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "electron": "^39.2.6",
+    "electron-builder": "^26.0.12",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsup": "^8.5.1",
+    "wait-on": "^9.0.3",
+    "@types/node": "^24.10.1"
   }
 }

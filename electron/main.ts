@@ -10,10 +10,21 @@ function createWindow() {
     }
   });
 
-  win.loadURL('http://localhost:4200'); // dev
+  win.webContents.on("before-input-event", (event, input) => {
+    if ((input.key === "r" && input.meta) || (input.key === "F5")) {
+      event.preventDefault();
+    }
+  });
 
-  // For production:
-  // win.loadFile(path.join(__dirname, '../dist/YOUR_APP_NAME/index.html'));
+  const isDev = !app.isPackaged;
+
+  if (isDev) {
+    win.loadURL('http://localhost:4200');
+  } else {
+    win.loadFile(path.join(__dirname, '../dist-angular/browser/index.html'));
+  }
+
+
 }
 
 app.whenReady().then(() => {
